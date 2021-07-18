@@ -1,4 +1,7 @@
 <h1 align="center">:zap: re::function</h1>
+
+[![CI](https://github.com/xDiaym/refunction/actions/workflows/ci.yml/badge.svg)](https://github.com/xDiaym/refunction/actions/workflows/ci.yml)  
+## What is it?
 re::function is an attempt to implement `std::function` on its own.
 
 ## :warning: Warning
