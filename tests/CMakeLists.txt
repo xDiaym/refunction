@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.0)
+project(refunction_tests LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+
+macro(include_test test_name filename)
+    add_executable(${test_name} ${filename})
+    target_link_libraries(${test_name} PRIVATE refunction)
+    add_test(NAME ${test_name} COMMAND ${test_name})
+    set_tests_properties(${test_name} PROPERTIES WILL_PASS true)
+endmacro()
+
+include_test(test_assign test_assign.cpp)
+include_test(test_functor test_functor.cpp)
+include_test(test_nullptr test_nullptr.cpp)
+include_test(test_swap test_swap.cpp)
+include_test(test_bool test_bool.cpp)
+include_test(test_target test_target.cpp)
+include_test(test_deduction test_deduction.cpp)
