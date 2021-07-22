@@ -67,7 +67,7 @@ void assert(const assertion_result &result, meta_info meta) {
 
 #define RE_THROWS(expr, exception_)                                            \
   do {                                                                         \
-    bool exception_was_thrown = false;                                        \
+    bool exception_was_thrown = false;                                         \
     try {                                                                      \
       expr;                                                                    \
     } catch (exception_) {                                                     \
@@ -75,8 +75,8 @@ void assert(const assertion_result &result, meta_info meta) {
     } catch (...) {                                                            \
     }                                                                          \
     RE_ASSERT((re::test::assertion_result{                                     \
-          exception_was_thrown,                                                \
-          std::string(STR(expr) " should throw " STR(exception) ".")}));       \
+        exception_was_thrown,                                                  \
+        std::string(STR(expr) " should throw " STR(exception) ".")}));         \
   } while (false)
 
 #endif /* REFUNCTION_ASSERT_HPP */

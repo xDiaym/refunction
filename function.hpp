@@ -59,7 +59,7 @@ public:
     return *this;
   }
 
-  result_type operator()(Args &&... args) const {
+  result_type operator()(Args &&...args) const {
     if (callable == nullptr) {
       throw bad_function_call();
     }
@@ -98,7 +98,7 @@ private:
   class callable_base {
   public:
     /** Functors can change their state, so the method is not marked as const */
-    virtual Ret call(Args &&... args) = 0;
+    virtual Ret call(Args &&...args) = 0;
 
 #if !defined(RE_FUNCTION_NO_RTTI)
     virtual const std::type_info &target_type() const noexcept = 0;
@@ -114,7 +114,7 @@ private:
     explicit callable_impl(Impl &&impl_) : impl(std::move(impl_)) {}
     callable_impl(const callable_impl &other) : impl(other.impl) {}
 
-    Ret call(Args &&... args) override {
+    Ret call(Args &&...args) override {
       return impl(std::forward<Args>(args)...);
     }
 
@@ -164,7 +164,7 @@ struct func_trait<Ret (T::*)(Args...) &> {
 };
 
 template <typename T, typename Ret, typename... Args>
-struct func_trait<Ret (T::*)(Args...) & noexcept> {
+struct func_trait<Ret (T::*)(Args...) &noexcept> {
   using type = Ret(Args...);
 };
 
@@ -181,10 +181,10 @@ struct func_trait<Ret (T::*)(Args...) const &noexcept> {
 } // namespace
 
 template <typename Ret, typename... Args>
-function(Ret (*)(Args...))->function<Ret(Args...)>;
+function(Ret (*)(Args...)) -> function<Ret(Args...)>;
 
 template <typename F>
-function(F)->function<typename func_trait<decltype(&F::operator())>::type>;
+function(F) -> function<typename func_trait<decltype(&F::operator())>::type>;
 
 template <class R, class... Args>
 void swap(function<R(Args...)> &lhs, function<R(Args...)> &rhs) noexcept {

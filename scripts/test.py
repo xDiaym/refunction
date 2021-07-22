@@ -5,6 +5,6 @@ import subprocess
 PATH = os.getcwd()
 BUILD_DIR = os.path.join(PATH, "build")
 
-subprocess.run("bin/build.py")
+subprocess.run("scripts/build.py")
 os.chdir(BUILD_DIR)
 subprocess.run("ctest ./bui".split())
